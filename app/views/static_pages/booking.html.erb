@@ -1,6 +1,14 @@
-<div class="row">
-	<div class="center jumbotron">
+<div class="center jumbotron">
 		<h1>SERV Booking</h1>
 		<p>Please fill in the form below with the correct information</p>
+</div>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<%= form_for(@booking, url: book_path) do |f| %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+	
+			<%= f.submit "Send Booking Infromation", class: "btn btn-primary" %>
+		<% end %>
 	</div>
 </div>
