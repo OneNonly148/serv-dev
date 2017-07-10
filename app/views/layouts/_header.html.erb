@@ -4,8 +4,14 @@
 		<nav>
 			<ul class="nav navbar-nav navbar-right">
 				<li><%= link_to "Booking", book_path %></li>
+				<% if logged_in? %>
+				<% if current_user.access_level?%>
 				<li><%= link_to "Management", mng_path %></li>
-				<li><%= link_to "Login", signup_path %></li>
+				<% end %>
+				<li><%= link_to "Logout", logout_path %></li>
+				<% else %>
+					<li><%= link_to "Login", login_path %></li>
+				<% end %>
 			</ul>
 		</nav>
 	</div>
