@@ -17,6 +17,13 @@ class UsersController < ApplicationController
   end
   def edit
   end
+  def s_list
+	@user = User.all
+  end
+  def s_deploy
+  end
+  def s_deployed
+  end
   def index
 	@users = User.all
   end

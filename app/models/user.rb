@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+	has_one :customers
+	has_one :service_partners
 	before_save {email.downcase!}
 	validates :name, presence: true
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

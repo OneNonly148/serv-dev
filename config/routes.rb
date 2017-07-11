@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'	
+  get '/s_list', to: 'users#s_list'
+  get '/s_deploy', to: 'users#s_deploy'
   resources :users do
 	member do
 		get :grant
