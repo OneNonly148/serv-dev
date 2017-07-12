@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
 
   root 'static_pages#home'
-  get '/book', to: 'static_pages#booking'
-  post '/book', to: 'static_pages#create'
+  get '/book', to: 'bookings#booking'
+  post '/book', to: 'bookings#create'
   get '/mng', to: 'static_pages#management'
   get '/sp', to: 'static_pages#service'
   get '/cs', to: 'static_pages#customer'

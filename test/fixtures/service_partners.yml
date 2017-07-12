@@ -2,8 +2,26 @@
 
 one:
   name: MyString
-  user: 
+  phone: MyString
+  ic: MyString
+  address: MyString
+  edu_inst: MyString
+  edu_study: MyString
+  oc_position: MyString
+  oc_sal: MyString
+  oc_trans: MyString
+  oc_cover: MyString
+  oc_exp: MyString
 
 two:
   name: MyString
-  user: 
+  phone: MyString
+  ic: MyString
+  address: MyString
+  edu_inst: MyString
+  edu_study: MyString
+  oc_position: MyString
+  oc_sal: MyString
+  oc_trans: MyString
+  oc_cover: MyString
+  oc_exp: MyString

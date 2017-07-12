@@ -10,48 +10,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711071401) do
-
-  create_table "bookings", force: :cascade do |t|
-    t.string "name"
-    t.string "phone_no"
-    t.string "email"
-    t.string "booking_date"
-    t.string "booking_ses"
-    t.string "serv_loc"
-    t.string "car_make"
-    t.string "car_model"
-    t.string "car_year"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20170712080944) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
+    t.string "email"
+    t.string "phone"
+    t.string "car"
+    t.string "model"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
   create_table "service_partners", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
+    t.string "phone"
+    t.string "ic"
+    t.string "address"
+    t.string "edu_inst"
+    t.string "edu_study"
+    t.string "oc_position"
+    t.string "oc_sal"
+    t.string "oc_trans"
+    t.string "oc_cover"
+    t.string "oc_exp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_service_partners_on_user_id"
+  end
+
+  create_table "sp_deploys", force: :cascade do |t|
+    t.integer "spid_id"
+    t.string "spname"
+    t.string "serv_loc"
+    t.string "date_book"
+    t.string "time_book"
+    t.integer "csid_id"
+    t.string "csname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["csid_id"], name: "index_sp_deploys_on_csid_id"
+    t.index ["spid_id"], name: "index_sp_deploys_on_spid_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
     t.string "email"
-    t.string "password_digest"
-    t.string "access_level"
+    t.string "password"
+    t.boolean "admin"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status"
-    t.string "customer_status"
-    t.string "service_status"
   end
 
 end

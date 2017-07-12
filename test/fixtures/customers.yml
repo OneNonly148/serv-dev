@@ -2,8 +2,14 @@
 
 one:
   name: MyString
-  user: 
+  email: MyString
+  phone: MyString
+  car: MyString
+  model: MyString
 
 two:
   name: MyString
-  user: 
+  email: MyString
+  phone: MyString
+  car: MyString
+  model: MyString

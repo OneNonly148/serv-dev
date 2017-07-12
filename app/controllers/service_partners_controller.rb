@@ -1,0 +1,2 @@
+class ServicePartnersController < ApplicationController
+end

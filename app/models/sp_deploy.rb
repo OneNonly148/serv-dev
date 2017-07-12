@@ -1,0 +1,2 @@
+class SpDeploy < ApplicationRecord
+end

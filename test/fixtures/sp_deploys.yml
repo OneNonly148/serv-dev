@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  spid: 
+  spname: MyString
+  serv_loc: MyString
+  date_book: MyString
+  time_book: MyString
+  csid: 
+  csname: MyString
+
+two:
+  spid: 
+  spname: MyString
+  serv_loc: MyString
+  date_book: MyString
+  time_book: MyString
+  csid: 
+  csname: MyString
