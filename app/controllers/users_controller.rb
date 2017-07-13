@@ -6,8 +6,8 @@ class UsersController < ApplicationController
 	@user = User.new(user_params)
 	if @user.save 
 		login @user
-		flash[:success] = "Welcome " + @user.name + " to SERV"
-		redirect_to @user
+		flash.now[:success] = "Welcome to SERV"
+		redirect_to root_url
 	else
 		render 'new'
 	end
@@ -46,6 +46,6 @@ class UsersController < ApplicationController
   end
   private
 	def user_params
-		params.require(:user).permit(:name, :email, :password, :password_confirmation, :status)
+		params.require(:user).permit(:email, :password, :password_confirmation, :status)
  	end
 end

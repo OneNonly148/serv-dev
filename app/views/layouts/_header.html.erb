@@ -5,7 +5,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><%= link_to "Booking", book_path %></li>
 				<% if logged_in? %>
-				<% if current_user.access_level?%>
+				<% if current_user.admin?%>
 				<li><%= link_to "Management", mng_path %></li>
 				<% end %>
 				<li><%= link_to "Logout", logout_path %></li>

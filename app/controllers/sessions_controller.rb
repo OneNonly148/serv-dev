@@ -4,15 +4,14 @@ class SessionsController < ApplicationController
 
   def create
 	user = User.find_by(email: params[:session][:email].downcase)
-	stat = user.status
 	if user && user.authenticate(params[:session][:password])
 		login user
-		if user.status == '1'
-			redirect_to '/cs'
-		elsif user.status == '2'
-			redirect_to '/sp'
-		else 
+		if user.admin? && user.status == '0'
 			redirect_to '/mng'
+		elsif user.status == '2'
+			redirect_to '/spp'
+		elsif user.status == '1'
+			redirect_to '/csp'
 		end
 	else
 		flash.now[:danger] = "Invalid email/password"
