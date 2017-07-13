@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SERV Booking</title>
+    <title><%= full_title(yield(:title)) %></title>
     <%= render 'layouts/include' %>
   </head>
 
   <body>
 	<%= render 'layouts/header' %>
-        <%= yield %>
+<!--	<%= flash.each do |message_type, message| %>
+		<div class="alert alert-<%= message_type %>"><%= message %></div>
+	<% end %>
+-->
+	<%= yield %>
 	<%= render 'layouts/footer' %>
   </body>
 </html>

@@ -1,0 +1,7 @@
+<% provide(:title, @user.name) %>
+<h1><%= @user.name %></h1>
+<% if @user.status == '1' %>
+	<p>Customer dashboard content<p>
+<% elsif @user.status == '2' %>
+	<p>Service Partner dashboard content</p>
+<% end %>
