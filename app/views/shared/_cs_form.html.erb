@@ -1,0 +1,26 @@
+<%= form_for(@customer, url: csc_path) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= f.label :name %>
+	<%= f.text_field :name, class: 'form-control' %>
+
+	<%= f.label :phone_no %>
+	<%= f.text_field :phone, class: 'form-control' %>
+	
+	<%= f.label :email %>
+	<%= fields_for :email, @user.email do |x| %>
+		<%= x.email_field :email %>
+	<% end %>
+	
+	<%= f.label :password %>
+	<%= fields_for :password, @user.password do |x| %>
+		<%= x.password_field :password, type: 'password' %>
+	<% end %>
+
+	<%= f.label :password_confirmation %>
+	<%= fields_for :password, @user.password_confirmation do |x| %>
+		<%= x.password_field :password_confirmation, type: 'password' %>
+	<% end %>
+	
+	<h2>Insert captcha verification here</h2>
+	<%= f.submit "Send Booking Infromation", class: "btn btn-primary" %>
+<% end %>
