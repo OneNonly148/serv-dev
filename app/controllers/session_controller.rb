@@ -8,6 +8,7 @@ class SessionController < ApplicationController
 
 		if admin && admin.authenticate(params[:session][:password])
 			login admin
+			current_user (params[:session][:email].downcase)
 			flash[:success] = "Logged in as Admin"
 			redirect_to root_url
 		elsif serv && serv.authenticate(params[:session][:password])
