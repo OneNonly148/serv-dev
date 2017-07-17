@@ -1,27 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  email: MyString
+  password_digest: MyString
+  admin: false
+  status: 1
   name: MyString
-  phone: MyString
-  ic: MyString
-  address: MyString
-  edu_inst: MyString
-  edu_study: MyString
-  oc_position: MyString
-  oc_sal: MyString
-  oc_trans: MyString
-  oc_cover: MyString
-  oc_exp: MyString
 
 two:
+  email: MyString
+  password_digest: MyString
+  admin: false
+  status: 1
   name: MyString
-  phone: MyString
-  ic: MyString
-  address: MyString
-  edu_inst: MyString
-  edu_study: MyString
-  oc_position: MyString
-  oc_sal: MyString
-  oc_trans: MyString
-  oc_cover: MyString
-  oc_exp: MyString

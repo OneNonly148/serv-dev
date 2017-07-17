@@ -1,2 +1,0 @@
-class DeploysController < ApplicationController
-end

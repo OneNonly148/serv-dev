@@ -1,0 +1,2 @@
+module ServicePartnerHelper
+end
