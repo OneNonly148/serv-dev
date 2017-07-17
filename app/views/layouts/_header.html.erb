@@ -4,9 +4,12 @@
 		<nav>
 			<ul class="nav navbar-nav navbar-right">
 				<li><%= link_to "Booking", book_path %></li>
-				<li><%= link_to "Management", '#' %></li>
-				<li><%= link_to "Logout", '#' %></li>
-				<li><%= link_to "Login", '#' %></li>
+				<% if logged_in? %>
+					<li><%= link_to "Management", '#' %></li>
+					<li><%= link_to "Logout", logout_path %></li>
+				<% else %>
+					<li><%= link_to "Login", login_path %></li>
+				<% end %>
 			</ul>
 		</nav>
 	</div>

@@ -5,6 +5,4 @@ class ServicePartner < ApplicationRecord
 	validates :email, presence: true, length: {maximum: 255}, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
 	has_secure_password
 	validates :password, presence: true, length: {minimum: 6}, allow_nil: true
-	validates :admin, presence: true
-	validates :status, presence: true
 end
