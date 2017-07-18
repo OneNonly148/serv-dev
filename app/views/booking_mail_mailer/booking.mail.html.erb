@@ -1,0 +1,21 @@
+<h1>Booking Request</h1>
+
+<p>Hi <%= @booking.name %>,</p>
+
+<p>Your booking request copy, details below:<p>
+
+<p>Request made by:
+Name: <%= @booking.name %>
+Phone: <%= @booking.phone_no %>
+</p><p>
+Booking Details:
+Booking Date: <%= @booking.prefered_booking_date %>
+Booking Session: <%= @booking.booking_ses %>
+Service Location: <%= @booking.service_loc %>
+
+Vehicle Details:
+Car Make:<%= @booking.car_make %>
+
+Thank you,
+SERV
+</p>

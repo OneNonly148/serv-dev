@@ -2,16 +2,16 @@
 	<%= render 'shared/error_messages', object: f.object %>
 	<%= f.label :name %>
 	<%= f.text_field :name, class: 'form-control' %>
-	
+
 	<%= f.label :phone_no %>
 	<%= f.text_field :phone_no, class: 'form-control' %>
-	
+
 	<%= f.label :email %>
 	<%= f.email_field :email, class: 'form-control' %>
 
 	<%= f.label :prefered_booking_date %>
-	<%= f.text_field :booking_date, class: 'form-control' %>
-	
+	<%= f.text_field :prefered_booking_date, class: 'form-control' %>
+
 	<%= f.label :prefered_booking_session %>
 	<%= f.select :booking_ses, ['Select Session', 'Morning | 8-12 AM', 'Afternoon | 12-4 PM', 'Evening | 4-8 PM', 'Night | 8-11 PM'], class: 'form-control' %>
 

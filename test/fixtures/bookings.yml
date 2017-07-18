@@ -4,9 +4,10 @@ one:
   name: MyString
   phone_no: MyString
   email: MyString
-  booking_date: MyString
+  prefered_booking_date: MyString
   booking_ses: MyString
   serv_loc: MyString
+  service_loc: MyString
   car_make: MyString
   car_model: MyString
   car_year: MyString
@@ -15,9 +16,10 @@ two:
   name: MyString
   phone_no: MyString
   email: MyString
-  booking_date: MyString
+  prefered_booking_date: MyString
   booking_ses: MyString
   serv_loc: MyString
+  service_loc: MyString
   car_make: MyString
   car_model: MyString
   car_year: MyString
