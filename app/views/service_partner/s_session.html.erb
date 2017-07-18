@@ -1,0 +1,15 @@
+<% provide(:title, 'Service Partner Login') %>
+<div class="center jumbotron">
+	<h1>Service Partner Login</h1>
+</div>
+<div class="col-md-6 col-md-offset-3">
+	<%= form_for(:service, url: cusl_path) do |f| %>
+
+		<%= f.label :email %>
+		<%= f.email_field :email, class: 'form-control' %>
+
+		<%= f.label :password %>
+		<%= f.password_field :password, class: 'form-control', type: 'password' %>
+
+		<%= f.submit "Login", class: "btn btn-primary" %>
+	<% end %>

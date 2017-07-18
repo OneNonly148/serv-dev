@@ -12,6 +12,11 @@ class ServicePartnerController < ApplicationController
 			render 's_new'
 		end
 	end
+	def s_session
+	end
+	def srvl
+		
+	end
 	private
 		def srv_params
 			params.require(:service).permit(:name, :email, :password, :status, :admin)

@@ -2,24 +2,15 @@
 	<%= render 'shared/error_messages', object: f.object %>
 	<%= f.label :name %>
 	<%= f.text_field :name, class: 'form-control' %>
-	
+
 	<%= f.label :phone_no %>
 	<%= f.text_field :phone_no, class: 'form-control' %>
-	
+
 	<%= f.label :email %>
 	<%= f.email_field :email, class: 'form-control' %>
 
-	<%= f.label :prefered_booking_date %>
-	<%= f.text_field :booking_date, class: 'form-control' %>
-	
-	<%= f.label :prefered_booking_session %>
-	<%= f.select :booking_ses, ['Select Session', 'Morning | 8-12 AM', 'Afternoon | 12-4 PM', 'Evening | 4-8 PM', 'Night | 8-11 PM'], class: 'form-control' %>
-
-	<%= f.label :service_location %>
-	<%= f.select :serv_loc, ['Select Location', 'Putrajaya','Cyberjaya', 'Klang Valley', 'Kuantan'], class: 'form-control' %>
-
-	<%= f.label :car_make %>
-	<%= f.select :car_make, ['Select Car Make', 'Produa', 'Proton', 'Honda', 'Toyota'], class: 'form-control' %>
+	<%= f.label :oil_change_package %>
+	<%= f.select :car_make, ['Local Cars | Semi - Synthetics RM 145', 'Local Cars | Fully Synthetics RM 204', 'Produa Axia | Produa Oil - Request Quotes','Other Cars | Request Quote'], class: 'form-control' %>
 	<h2>Insert js to handle car make to model and year querry</h2>
 	<h2>Insert captcha verification here</h2>
 	<%= f.submit "Send Booking Infromation", class: "btn btn-primary" %>

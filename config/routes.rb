@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root	 'static_pages#home'
+  root	 'bookings#booking'
   get 	'/book'		, to: 'bookings#booking'
   post 	'/book'		, to: 'bookings#create'
   get 	'/mng'		, to: 'static_pages#management'
@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   get	'/srvn'		, to: 'service_partner#s_new'
   post  '/srvn'		, to: 'service_partner#create'
   get 	'/signup'	, to: 'static_pages#s_signup'
-  get 	'/login'	, to: 'session#l_new'
-  post	'/login' 	, to: 'session#create'
-  get  	'/logout'	, to: 'session#destroy'
+  get 	'/login'	, to: 'static_pages#s_login'
+  get   '/mngl' ,to:  'management#m_session'
+  post '/mngl', to: 'management#mngl'
+  get '/cusl', to:  'customer#c_session'
+  post '/cusl', to: 'customer#cusl'
+  get '/srvl', to:  'service_partner#s_session'
+  post 'srvl', to: 'service_partner#srvl'
+  get '/logout', to: 'management#destroy'
 end
