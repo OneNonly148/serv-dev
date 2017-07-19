@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718063444) do
+ActiveRecord::Schema.define(version: 20170719065929) do
 
   create_table "bookings", force: :cascade do |t|
     t.string "name"
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(version: 20170718063444) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "makes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "managements", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -45,6 +51,14 @@ ActiveRecord::Schema.define(version: 20170718063444) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "models", force: :cascade do |t|
+    t.string "name"
+    t.integer "make_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["make_id"], name: "index_models_on_make_id"
   end
 
   create_table "service_partners", force: :cascade do |t|

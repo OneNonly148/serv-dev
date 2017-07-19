@@ -10,8 +10,13 @@
 	<%= f.email_field :email, class: 'form-control' %>
 
 	<%= f.label :oil_change_package %>
-	<%= f.select :car_make, ['Local Cars | Semi - Synthetics RM 145', 'Local Cars | Fully Synthetics RM 204', 'Produa Axia | Produa Oil - Request Quotes','Other Cars | Request Quote'], class: 'form-control' %>
-	<h2>Insert js to handle car make to model and year querry</h2>
+	<%= f.select :car_year, ['Local Cars | Semi - Synthetics RM 145', 'Local Cars | Fully Synthetics RM 204', 'Produa Axia | Produa Oil - Request Quotes','Other Cars | Request Quote'], class: 'form-control' %>
+
+	<%= f.label :car_make %>
+	<%= f.collection_select :car_make, Make.order(:name),:id, :name, include_blank: true %>
+
+	<%= f.label :car_model %>
+	<%= f.grouped_collection_select :car_model, Make.order(:name), :model, :name, :id, :name, include_blank: true %>
 	<h2>Insert captcha verification here</h2>
 	<%= f.submit "Send Booking Infromation", class: "btn btn-primary" %>
 <% end %>
