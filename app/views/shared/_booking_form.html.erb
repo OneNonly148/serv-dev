@@ -10,10 +10,7 @@
 	<%= f.email_field :email, class: 'form-control' %>
 
 	<%= f.label :oil_change_package %>
-	<%= f.select :car_year, ['Local Cars | Semi - Synthetics RM 145', 'Local Cars | Fully Synthetics RM 204', 'Produa Axia | Produa Oil - Request Quotes','Other Cars | Request Quote'], class: 'form-control' %>
-
-	<%= f.label :car_make %>
-	<%= f.collection_select :car_make, Make.order(:name),:id, :name, include_blank: true %>
+	<%= f.select :car_year, ['Local Cars | Semi - Synthetics RM 149', 'Local Cars | Fully Synthetics RM 204', 'Produa Axia | Produa Oil - Request Quotes','Other Cars | Request Quote'], class: 'form-control' %>
 
 	<%= f.label :car_model %>
 	<%= f.grouped_collection_select :car_model, Make.order(:name), :model, :name, :id, :name, include_blank: true %>

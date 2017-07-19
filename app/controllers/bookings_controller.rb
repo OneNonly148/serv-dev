@@ -3,9 +3,11 @@ class BookingsController < ApplicationController
 	@booking = Booking.new
   end
   def create
+    
 	@booking = Booking.create(booking_params)
 	if @booking.save
 		BookingMailMailer.booking_mail(@booking).deliver_now
+        BookingMailMailer.admin_mail(@booking).deliver_now
 		flash[:success] = "Booking Made, a copy sent to your email"
 		redirect_to root_url
 	else

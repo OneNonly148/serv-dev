@@ -1,4 +1,4 @@
 class Make < ApplicationRecord
-  belongs_to :booking
-  has_many :model
+    has_many :booking
+    has_many :model
 end
