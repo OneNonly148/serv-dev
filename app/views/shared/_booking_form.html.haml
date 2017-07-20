@@ -1,0 +1,20 @@
+= form_for(@booking, url: book_path) do |f|
+  = render 'shared/error_messages', object: f.object
+  = f.label :name
+  = f.text_field :name, class: 'form-control'
+  = f.label :phone_no
+  = f.text_field :phone_no, class: 'form-control', onchange: "console.log(this.val)"
+  = f.label :email
+  = f.email_field :email, class: 'form-control'
+  = f.label :booking_date
+  %input#datepicker{:type => "text"}
+  = f.label :package
+  = f.select :car_year, [['Select a Package', 0], ['Local Cars | Semi - Synthetics RM 149', 1],['Local Cars | Fully Synthetics RM 204', 2], ['Produa Axia | Produa Oil - Request Quotes', 3] , ['Other Cars | Request Quote', 4]], {class: 'form-control'}, :onchange => "load_car_makes($(this).val());"
+  .car_makes
+    = f.label "Car Make"
+    %select#car_makes{onchange:"load_car_models($(this).val())"}
+  .car_models
+    = f.label "Car Model"
+    = f.select :booking_ses, ['...loading']
+  %h2 Insert captcha verification here
+  = f.submit "Send Booking Infromation", class: "btn btn-primary"

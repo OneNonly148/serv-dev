@@ -1,13 +1,37 @@
+@load_car_makes = (option_no)->
+  $(".car_models").hide()
+  $.ajax
+    url: '/book/load_car_makes.json'
+    data: option_no: option_no
+    type: 'get'
+    success: (result)->
+        $(".car_makes").show()
+        $("#car_makes").empty()
+        $("#car_makes").append("<option>Select Car Make</option>")
+        $.each result, (key, value) ->
+          $("#car_makes").append("<option value='"+value.id+"'>"+value.name+"</option>")
+          return
+        return
+    error: (error)->
+      console.log "There was an error"
+      return
+@load_car_models = (make_no)->
+  #console.log "load_car_models"
+  #console.log make_no
+  $.ajax
+    url: '/book/load_car_models.json'
+    data: make_no: make_no
+    type: 'get'
+    success: (make_no)->
+      $(".car_models").show()
+      $("#booking_booking_ses").empty()
+      $("#booking_booking_ses").append("<option>Select Car Model</option>")
+      $.each make_no, (key, value) ->
+        $("#booking_booking_ses").append("<option value='"+value.name+"'>"+value.name+"</option>")
+        return
+      return
+    error: (error)->
+      return
 jQuery ->
-  $('#booking_model_id').parent().hide()
-  states = $('#booking_make_id').html()
-  $('#booking_make_id').change ->
-    country = $('#booking_make_id :selected').text()
-    escaped_model = make.replace(/([ #;&,+*~\':"!^$[\]()=>|\/@])/g, '\\$1')
-    options = $(states).filter("optgroup[label='#{escaped_model}']").html()
-    if options
-      $('#booking_model_id').html(options)
-      $('#booking_model_id').parent().show()
-    else
-      $('#booking_model_id').empty()
-      $('#booking_model_id').parent().hide()
+  $(".car_makes").hide()
+  $(".car_models").hide()

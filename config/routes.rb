@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root	 'bookings#booking'
   get 	'/book'		, to: 'bookings#booking'
+  get   '/book/load_car_makes', to: 'bookings#load_car_makes'
+  get   '/book/load_car_models', to: 'bookings#load_car_models'
   post 	'/book'		, to: 'bookings#create'
   get 	'/mng'		, to: 'static_pages#management'
   get	'/mngn'		, to: 'management#m_new'
