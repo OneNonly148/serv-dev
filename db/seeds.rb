@@ -35,3 +35,9 @@ Model.create(name: "Bezza", make_id: Make.find_by(name: "Produa").id)
 Model.create(name: "Kelisa", make_id: Make.find_by(name: "Produa").id)
 Model.create(name: "Kenari", make_id: Make.find_by(name: "Produa").id)
 Model.create(name: "Kancil", make_id: Make.find_by(name: "Produa").id)
+
+Package.create(name: "Local Cars | Semi - Synthetics RM 149")
+Package.create(name: "Local Cars | Fully - Synthetics RM 209")
+Package.create(name: "Produa Axia Model | Request Quote")
+Package.create(name: "Others | Request Quote")
+

@@ -7,14 +7,14 @@
   = f.label :email
   = f.email_field :email, class: 'form-control'
   = f.label :booking_date
-  %input#datepicker{:type => "text"}
+  = f.text_field :prefered_booking_date, :onclick => "date_pick();"
   = f.label :package
-  = f.select :car_year, [['Select a Package', 0], ['Local Cars | Semi - Synthetics RM 149', 1],['Local Cars | Fully Synthetics RM 204', 2], ['Produa Axia | Produa Oil - Request Quotes', 3] , ['Other Cars | Request Quote', 4]], {class: 'form-control'}, :onchange => "load_car_makes($(this).val());"
+  = f.select :car_year, options_from_collection_for_select(@package, "id", "name"), {class: 'form-control'}, :onchange => "load_car_makes($(this).val());"
   .car_makes
     = f.label "Car Make"
     %select#car_makes{onchange:"load_car_models($(this).val())"}
   .car_models
     = f.label "Car Model"
-    = f.select :booking_ses, ['...loading']
+    = f.select :models_id, ['...loading']
   %h2 Insert captcha verification here
   = f.submit "Send Booking Infromation", class: "btn btn-primary"

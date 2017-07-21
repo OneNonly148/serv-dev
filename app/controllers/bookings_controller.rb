@@ -1,13 +1,14 @@
 class BookingsController < ApplicationController
 	def booking
 	@booking = Booking.new
+	@package = Package.all
   end
 
   def create
+		#binding.pry
 		@booking = Booking.create(booking_params)
 		if @booking.save
-			BookingMailMailer.booking_mail(@booking).deliver_now
-	    BookingMailMailer.admin_mail(@booking).deliver_now
+			@id = @booking.id
 			flash[:success] = "Booking Made, a copy sent to your email"
 			redirect_to root_url
 		else
@@ -15,7 +16,8 @@ class BookingsController < ApplicationController
 			redirect_to root_url
 		end
 	end
-
+	def date_pick
+	end
 	def load_car_makes
 		option_no = params["option_no"].to_i
 		# Option selection to load car make details
@@ -53,6 +55,6 @@ class BookingsController < ApplicationController
 
   private
 				def booking_params
-					params.require(:booking).permit(:name, :phone_no, :email, :prefered_booking_date, :booking_ses, :serv_loc, :car_make, :car_year, :car_model)
+					params.require(:booking).permit(:name, :phone_no, :email, :prefered_booking_date, :booking_ses, :serv_loc, :car_make, :car_year, :models_id)
 				end
 end

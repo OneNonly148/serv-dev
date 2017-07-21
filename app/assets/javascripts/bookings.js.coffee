@@ -1,3 +1,6 @@
+@date_pick = ()->
+  console.log "im in"
+  $("#prefered_booking_date").datepicker()
 @load_car_makes = (option_no)->
   $(".car_models").hide()
   $.ajax
@@ -17,20 +20,21 @@
       return
 @load_car_models = (make_no)->
   #console.log "load_car_models"
-  #console.log make_no
   $.ajax
     url: '/book/load_car_models.json'
     data: make_no: make_no
     type: 'get'
-    success: (make_no)->
+    success: (result)->
+
       $(".car_models").show()
-      $("#booking_booking_ses").empty()
-      $("#booking_booking_ses").append("<option>Select Car Model</option>")
-      $.each make_no, (key, value) ->
-        $("#booking_booking_ses").append("<option value='"+value.name+"'>"+value.name+"</option>")
+      $("#booking_models_id").empty()
+      $("#booking_models_id").append("<option>Select Car Model</option>")
+      $.each result, (key, value) ->
+        $("#booking_models_id").append("<option value='"+value.id+"'>"+value.name+"</option>")
         return
       return
     error: (error)->
+      console.log "There was an error"
       return
 jQuery ->
   $(".car_makes").hide()
