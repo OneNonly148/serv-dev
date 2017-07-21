@@ -16,8 +16,6 @@ class BookingsController < ApplicationController
 			redirect_to root_url
 		end
 	end
-	def date_pick
-	end
 	def load_car_makes
 		option_no = params["option_no"].to_i
 		# Option selection to load car make details

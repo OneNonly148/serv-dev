@@ -7,7 +7,7 @@
   = f.label :email
   = f.email_field :email, class: 'form-control'
   = f.label :booking_date
-  = f.text_field :prefered_booking_date, :onclick => "date_pick();"
+  %input#prefered_booking_date{:type => 'text', onclick:"date_pick();"}
   = f.label :package
   = f.select :car_year, options_from_collection_for_select(@package, "id", "name"), {class: 'form-control'}, :onchange => "load_car_makes($(this).val());"
   .car_makes

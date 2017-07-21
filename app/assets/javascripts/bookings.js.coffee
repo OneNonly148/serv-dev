@@ -1,6 +1,5 @@
-@date_pick = ()->
-  console.log "im in"
-  $("#prefered_booking_date").datepicker()
+$ date_pick = ()->
+  $( "#prefered_booking_date" ).datepicker()
 @load_car_makes = (option_no)->
   $(".car_models").hide()
   $.ajax
