@@ -21,5 +21,6 @@
   .car_models
     = f.label "Car Model"
     = f.select :model_id, ['...loading']
-  %h2 Insert captcha verification here
+  .g-recaptcha{"data-sitekey" => "6LcXOioUAAAAAHX-M1So3YLi0lSRKuf9gGv4qF5F"}
+
   = f.submit "Send Booking Infromation", class: "btn btn-primary"

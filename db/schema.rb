@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724064540) do
+ActiveRecord::Schema.define(version: 20170724160935) do
 
   create_table "bookings", force: :cascade do |t|
     t.string "name"
@@ -88,6 +88,14 @@ ActiveRecord::Schema.define(version: 20170724064540) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "simple_captcha_data", force: :cascade do |t|
+    t.string "key", limit: 40
+    t.string "value", limit: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["key"], name: "idx_key"
   end
 
 end
