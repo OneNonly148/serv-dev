@@ -5,13 +5,9 @@ class CreateBookings < ActiveRecord::Migration[5.1]
       t.string :phone_no
       t.string :email
       t.string :prefered_booking_date
-      t.string :booking_ses
-      t.string :serv_loc
-      t.string :service_loc
-      t.string :car_make
-      t.string :car_model
-      t.string :car_year
-
+      t.references :location, foreign_key: true
+      t.string :package
+      t.references :model, foreign_key: true
       t.timestamps
     end
   end

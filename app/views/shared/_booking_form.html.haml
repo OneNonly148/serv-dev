@@ -1,20 +1,25 @@
 = form_for(@booking, url: book_path) do |f|
   = render 'shared/error_messages', object: f.object
   = f.label :name
-  = f.text_field :name, class: 'form-control'
+  = f.text_field :name, placeholder: "Name", class: 'form-control'
   = f.label :phone_no
-  = f.text_field :phone_no, class: 'form-control', onchange: "console.log(this.val)"
+  = f.text_field :phone_no, class: 'form-control', placeholder: "Phone Number", onchange: "console.log(this.val)"
   = f.label :email
-  = f.email_field :email, class: 'form-control'
+  = f.email_field :email, placeholder: "Email", class: 'form-control'
   = f.label :booking_date
-  %input#prefered_booking_date{:type => 'text', onclick:"date_pick();"}
+  = f.text_field :prefered_booking_date, placeholder: "Select a Booking Date", onchange:'date_select()'
+  = f.label "Region"
+  %select#region{onchange:"load_locate($(this).val())"}
+  .sloc
+    = f.label "Location"
+    = f.select :location_id, ['...loading']
   = f.label :package
-  = f.select :car_year, options_from_collection_for_select(@package, "id", "name"), {class: 'form-control'}, :onchange => "load_car_makes($(this).val());"
+  = f.select :package, options_from_collection_for_select(@package, "id", "name"), {class: 'form-control'}, :onchange => "load_car_makes($(this).val());"
   .car_makes
     = f.label "Car Make"
     %select#car_makes{onchange:"load_car_models($(this).val())"}
   .car_models
     = f.label "Car Model"
-    = f.select :models_id, ['...loading']
+    = f.select :model_id, ['...loading']
   %h2 Insert captcha verification here
   = f.submit "Send Booking Infromation", class: "btn btn-primary"

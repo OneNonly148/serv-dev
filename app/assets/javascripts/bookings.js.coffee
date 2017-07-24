@@ -1,5 +1,43 @@
+
 $ date_pick = ()->
-  $( "#prefered_booking_date" ).datepicker()
+  $( "#booking_prefered_booking_date" ).datepicker()
+@date_select = () ->
+  date = $( "#booking_prefered_booking_date" ).datepicker('getDate')
+  date = JSON.stringify date
+  console.log "Date: " + date
+  return
+window.onload = () ->
+  $(".sloc").hide()
+  $.ajax
+    url: '/book/load_region.json'
+    type: 'get'
+    success: (result)->
+      $("#region").empty()
+      $("#region").append("<option>Select Region</option>")
+      $.each result, (key, value) ->
+        $("#region").append("<option value='"+value.id+"'>"+value.name+"</option>")
+        return
+      return
+    error: (error) ->
+      return
+@load_locate = (region) ->
+  $(".sloc").show()
+  $.ajax
+    url: '/book/load_locate.json'
+    data: region: region
+    type: 'get'
+    success: (result)->
+      $("#booking_location_id").show()
+      $("#booking_location_id").empty()
+      $("#booking_location_id").append("<option>Select Location</option>")
+      console.log "Result: " + result
+      $.each result, (key, value) ->
+        $("#booking_location_id").append("<option value='"+value.id+"'>"+value.name+"</option>")
+        console.log "ID: " + value.id
+        return
+      return
+    error: (error) ->
+      return
 @load_car_makes = (option_no)->
   $(".car_models").hide()
   $.ajax
@@ -24,17 +62,17 @@ $ date_pick = ()->
     data: make_no: make_no
     type: 'get'
     success: (result)->
-
       $(".car_models").show()
-      $("#booking_models_id").empty()
-      $("#booking_models_id").append("<option>Select Car Model</option>")
+      $("#booking_model_id").empty()
+      $("#booking_model_id").append("<option>Select Car Model</option>")
       $.each result, (key, value) ->
-        $("#booking_models_id").append("<option value='"+value.id+"'>"+value.name+"</option>")
+        $("#booking_model_id").append("<option value='"+value.id+"'>"+value.name+"</option>")
         return
       return
     error: (error)->
       console.log "There was an error"
       return
 jQuery ->
+  $(".sloc").hide()
   $(".car_makes").hide()
   $(".car_models").hide()

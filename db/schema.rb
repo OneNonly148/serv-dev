@@ -10,21 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721033613) do
+ActiveRecord::Schema.define(version: 20170724064540) do
 
   create_table "bookings", force: :cascade do |t|
     t.string "name"
     t.string "phone_no"
     t.string "email"
     t.string "prefered_booking_date"
-    t.string "booking_ses"
-    t.string "serv_loc"
-    t.string "service_loc"
-    t.string "car_year"
+    t.integer "location_id"
+    t.string "package"
+    t.integer "model_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "models_id"
-    t.index ["models_id"], name: "index_bookings_on_models_id"
+    t.index ["location_id"], name: "index_bookings_on_location_id"
+    t.index ["model_id"], name: "index_bookings_on_model_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -51,6 +50,20 @@ ActiveRecord::Schema.define(version: 20170721033613) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "mjlocs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mnlocs", force: :cascade do |t|
+    t.string "name"
+    t.integer "mjloc_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mjloc_id"], name: "index_mnlocs_on_mjloc_id"
   end
 
   create_table "models", force: :cascade do |t|

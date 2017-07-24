@@ -1,7 +1,8 @@
 class BookingsController < ApplicationController
 	def booking
-	@booking = Booking.new
-	@package = Package.all
+		@booking = Booking.new
+		@package = Package.all
+		@mjloc = Mjloc.all
   end
 
   def create
@@ -16,16 +17,33 @@ class BookingsController < ApplicationController
 			redirect_to root_url
 		end
 	end
+	def load_region
+		mjloc = Mjloc.where(id:[1..4])
+		respond_to do |format|
+			format.json { render json: mjloc.to_json, status: :ok }
+		end
+	end
+	def load_locate
+		region = params["region"].to_i
+		if region == 1
+			mnloc = Mnloc.where(id:[1])
+		end
+		
+		respond_to do |format|
+			format.json { render json: mnloc.to_json, status: :ok }
+		end
+	end
+
 	def load_car_makes
 		option_no = params["option_no"].to_i
 		# Option selection to load car make details
-		if option_no == 1
-				car_make = Make.where(id:[1,2])
-		elsif option_no == 2
+		if option_no == 2
 				car_make = Make.where(id:[1,2])
 		elsif option_no == 3
-				car_make = Make.where(id:[2])
+				car_make = Make.where(id:[1,2])
 		elsif option_no == 4
+				car_make = Make.where(id:[2])
+		elsif option_no == 5
 				car_make = Make.where(id:[3..9])
 		else
 				car_make = 0
@@ -53,6 +71,6 @@ class BookingsController < ApplicationController
 
   private
 				def booking_params
-					params.require(:booking).permit(:name, :phone_no, :email, :prefered_booking_date, :booking_ses, :serv_loc, :car_make, :car_year, :models_id)
+					params.require(:booking).permit(:name, :phone_no, :email, :prefered_booking_date, :location_id, :package, :model_id)
 				end
 end
