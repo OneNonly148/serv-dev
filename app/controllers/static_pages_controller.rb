@@ -12,5 +12,10 @@ class StaticPagesController < ApplicationController
     redirect_to book_mng_path
   end
   def create
+    car = params["car"]
+    pack = params["pack"]
+    package = Package.create(name: pack, car_id: car)
+    package.save
+    redirect_to book_mng_path
   end
 end

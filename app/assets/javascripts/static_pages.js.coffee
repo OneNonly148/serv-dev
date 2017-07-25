@@ -1,16 +1,22 @@
 $ ->
   packn = $( "#package" )
   car_make = $( "#car_make" )
-  allFields = $( [] ).add( packn ).add( car_make )
+  allFields = $( [] ).add(packn).add(car_make)
   addUser = ->
-    $('#packli').append '<li>' + packn.val() + '</li>'
-    dialog.dialog 'close'
+    $.ajax
+      url: '/book/save_pack.json'
+      data:
+        pack: packn.val()
+        car: car_make.val()
+      type: 'get'
+      dialog.dialog 'close'
     return
   dialog = $('#dialog-form').dialog(
     autoOpen: false
     height: 250
     width: 350
     modal: true
+    $('#car_make').append('<option value=1>Proton</option>')
     buttons:
       'Create a package': addUser
       Cancel: ->

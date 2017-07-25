@@ -24,5 +24,5 @@ Rails.application.routes.draw do
   get   '/logout' , to: 'management#destroy'
   get   '/book_mng',to: 'static_pages#booking_mng'
   delete '/del_pack', to: 'static_pages#destroy'
-  post '/npack', to: 'static_pages#create'
+  get '/book/save_pack', to: 'static_pages#create'
 end

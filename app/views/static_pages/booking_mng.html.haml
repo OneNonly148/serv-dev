@@ -11,7 +11,7 @@
             %label{:for => "package"} Package
             %input#package.text.ui-widget-content.ui-corner-all{:name => "package", :type => "text"}
             %label{:for => "make"} Car Make
-            %input#car_make.text.ui-widget-content.ui-corner-all{:name => "car_make", :type => "text"}
+            %select#car_make
     %hr/
     %ul#packli
       - @package.each do |pack|
