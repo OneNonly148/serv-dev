@@ -1,3 +1,3 @@
 class Make < ApplicationRecord
-    has_many :model
+    has_many :model, dependent: :destroy
 end

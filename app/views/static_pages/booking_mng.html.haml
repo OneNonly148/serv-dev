@@ -1,0 +1,36 @@
+- provide(:title, "Booking Management")
+.row
+  .col-md-8.col-md-offset-2
+    %h1.center.jumbotron Booking Management
+    %h4
+      Package Setting |
+      %button#create-user Create new package
+      #dialog-form{:title => "Create new package"}
+        %form
+          %fieldset
+            %label{:for => "package"} Package
+            %input#package.text.ui-widget-content.ui-corner-all{:name => "package", :type => "text"}
+            %label{:for => "make"} Car Make
+            %input#car_make.text.ui-widget-content.ui-corner-all{:name => "car_make", :type => "text"}
+    %hr/
+    %ul#packli
+      - @package.each do |pack|
+        - if pack.id == 1
+        - else
+          %li
+            = pack.name
+            | #{link_to "Delete", del_pack_path(:pack => pack.id), method: :delete, data: {confirm: "Confirm package deletion?"}}
+    %h4 Supported Car Make
+    %hr/
+    %ul
+      - @make.each do |pack|
+        %li
+          = pack.id
+          | #{pack.name}
+    %h4 Supported Car Model
+    %hr/
+    %ul
+      - @model.each do |pack|
+        %li
+          = pack.make_id
+          | #{pack.name}

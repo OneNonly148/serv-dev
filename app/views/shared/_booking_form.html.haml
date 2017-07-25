@@ -2,7 +2,7 @@
   = render 'shared/error_messages', object: f.object
   = f.label :name
   = f.text_field :name, placeholder: "Name", class: 'form-control'
-  = f.label :phone_no
+  = f.label "Phone Number"
   = f.text_field :phone_no, class: 'form-control', placeholder: "Phone Number", onchange: "console.log(this.val)"
   = f.label :email
   = f.email_field :email, placeholder: "Email", class: 'form-control'
