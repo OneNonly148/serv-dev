@@ -2,7 +2,15 @@ class StaticPagesController < ApplicationController
   def test_save
     name = params["name"]
     email = params["email"]
-    test_save = Test.create(name: name, email: email)
+    phone = params["phone"]
+    make = params["make"]
+    modelv = params["model"]
+    servicev = params["service"]
+    location = params["location"]
+    date = params["date"]
+    transfer = params["transfer"]
+    cash = params["cash"]
+    test_save = Test.create(name: name, email: email, phone: phone, make: make, model:modelv, service:servicev, location: location, date: date, transfer: transfer, cash: cash)
     respond_to do |format|
 			format.json {render json: name.to_json, status: :ok }
 		end

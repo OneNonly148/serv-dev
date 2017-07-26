@@ -2,12 +2,34 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div class="page">
-      <form id="test">
+      <form id="test_one">
         Name:<br>
         <input type="text" id="name">
+        Phone Number:<br>
+        <input type="text" id="phone">
         Email:<br>
         <input type="email" id="email">
-        <input type="button" value="Submit" onclick="test_f()">
+        <input type="button" value="Next" onclick="test_first()">
+      </form>
+      <form id="test_two">
+        Car Make:<br>
+        <input type="text" id="make">
+        Car Model:<br>
+        <input type="text" id="model">
+        Service Type:<br>
+        <input type="text" id="service">
+        Location:<br>
+        <input type="text" id="location">
+        Booking Date:<br>
+        <input type="text" id="date">
+        <input type="button" value="Next" onclick="test_second()">
+      </form>
+      <form id="test_three">
+        <input type="checkbox" id="transfer">
+        Online Transfer<br>
+        <input type="checkbox" id="cash">
+        Cash<br>
+        <input type="button" value="Submit" onclick="test_final()">
       </form>
     </div>
   </div>

@@ -35,24 +35,17 @@ class BookingsController < ApplicationController
 	end
 
 	def load_car_makes
+		binding.pry
 		option_no = params["option_no"].to_i
 		package = Package.where(id:[option_no])
-		a = package.proton
-		b = package.produa
-		c = package.others
-		if a == 1 && b == 1 && c == 1
-				car_make = Make.where(id:[1..9])
-		elsif a == 1 && b == 0 && c == 0
-				car_make = Make.where(id:[1])
-		elsif a == 1 && b == 1 && c == 0
+		a = package
+		if option_no == 18
 				car_make = Make.where(id:[1,2])
-		elsif a == 0 && b == 1 && c == 0
+		elsif option_no == 3
+				car_make = Make.where(id:[1,2])
+		elsif option_no == 4
 				car_make = Make.where(id:[2])
-		elsif a == 0 && b == 1 && c == 1
-				car_make = Make.where(id:[2..9])
-		elsif a == 1 && b == 0 && c == 1
-				car_make = Make.where(id:[1,3..9])
-		elsif a == 0 && b == 0 && c == 1
+		elsif option_no == 5
 				car_make = Make.where(id:[3..9])
 		else
 				car_make = 0

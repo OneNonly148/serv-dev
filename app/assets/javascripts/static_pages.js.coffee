@@ -1,17 +1,46 @@
-@test_f = ()->
+name = ""
+phone = ""
+email = ""
+make = ""
+model = ""
+location = ""
+date = ""
+transfer = ""
+cash = ""
+service = ""
+@test_first = ()->
     name = $("#name")
+    phone = $("#phone")
     email = $("#email")
-    console.log name.val()
-    console.log email.val()
+    $("#test_one").hide()
+    $("#test_two").show()
+@test_second = ()->
+    make = $("#make")
+    model = $("#model")
+    service = $("#service")
+    location = $("#location")
+    date = $("#date")
+    $("#test_two").hide()
+    $("#test_three").show()
+@test_final = ()->
+    transfer = $("#transfer")
+    cash = $("#cash")
     $.ajax
       url: 'test/save.json'
       data:
         name: name.val()
+        phone: phone.val()
         email: email.val()
+        make: make.val()
+        model: model.val()
+        service: service.val()
+        location: location.val()
+        date: date.val()
+        transfer: transfer.val()
+        cash: cash.val()
       type: 'get'
       success: (result)->
-        console.log "Respond"
-        $("#test").hide()
+        $("#test_three").hide()
         $(".page").append "<h1>Thank You! " +result+ "</h1>"
         return
       error: (error)->
@@ -67,3 +96,5 @@ $ ->
     return
 $ jQuery ->
     $('#dialog-form').hide()
+    $("#test_three").hide()
+    $("#test_two").hide()
