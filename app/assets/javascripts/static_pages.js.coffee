@@ -1,4 +1,4 @@
-###$ ->
+$ ->
   packn = $( "#package" )
   car_make = $( "#car_make" )
   allFields = $( [] ).add(packn).add(car_make)
@@ -36,4 +36,3 @@
   $('#create-user').button().on 'click', ->
     dialog.dialog 'open'
     return
-###
