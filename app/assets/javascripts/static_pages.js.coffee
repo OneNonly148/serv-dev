@@ -1,4 +1,21 @@
-
+@test_f = ()->
+    name = $("#name")
+    email = $("#email")
+    console.log name.val()
+    console.log email.val()
+    $.ajax
+      url: 'test/save.json'
+      data:
+        name: name.val()
+        email: email.val()
+      type: 'get'
+      success: (result)->
+        console.log "Respond"
+        $("#test").hide()
+        $(".page").append "<h1>Thank You! " +result+ "</h1>"
+        return
+      error: (error)->
+        return
 $ ->
   packn = $( "#package" )
   protonv = 0
@@ -48,3 +65,5 @@ $ ->
   $('#create-user').button().on 'click', ->
     dialog.dialog 'open'
     return
+$ jQuery ->
+    $('#dialog-form').hide()

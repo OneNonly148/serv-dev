@@ -1,4 +1,12 @@
 class StaticPagesController < ApplicationController
+  def test_save
+    name = params["name"]
+    email = params["email"]
+    test_save = Test.create(name: name, email: email)
+    respond_to do |format|
+			format.json {render json: name.to_json, status: :ok }
+		end
+  end
   def booking_mng
     @package = Package.all
     @newpack = Package.new

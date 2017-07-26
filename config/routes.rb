@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root	 'bookings#booking'
+  get   '/test'   , to: 'static_pages#test'
+  get   '/test/save', to: 'static_pages#test_save'
   get 	'/book'		, to: 'bookings#booking'
   get   '/book/load_car_makes', to: 'bookings#load_car_makes'
   get   '/book/load_car_models', to: 'bookings#load_car_models'

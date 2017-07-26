@@ -28,7 +28,7 @@ class BookingsController < ApplicationController
 		if region == 1
 			mnloc = Mnloc.where(id:[1])
 		end
-		
+
 		respond_to do |format|
 			format.json { render json: mnloc.to_json, status: :ok }
 		end
@@ -36,14 +36,23 @@ class BookingsController < ApplicationController
 
 	def load_car_makes
 		option_no = params["option_no"].to_i
-		# Option selection to load car make details
-		if option_no == 2
+		package = Package.where(id:[option_no])
+		a = package.proton
+		b = package.produa
+		c = package.others
+		if a == 1 && b == 1 && c == 1
+				car_make = Make.where(id:[1..9])
+		elsif a == 1 && b == 0 && c == 0
+				car_make = Make.where(id:[1])
+		elsif a == 1 && b == 1 && c == 0
 				car_make = Make.where(id:[1,2])
-		elsif option_no == 3
-				car_make = Make.where(id:[1,2])
-		elsif option_no == 4
+		elsif a == 0 && b == 1 && c == 0
 				car_make = Make.where(id:[2])
-		elsif option_no == 5
+		elsif a == 0 && b == 1 && c == 1
+				car_make = Make.where(id:[2..9])
+		elsif a == 1 && b == 0 && c == 1
+				car_make = Make.where(id:[1,3..9])
+		elsif a == 0 && b == 0 && c == 1
 				car_make = Make.where(id:[3..9])
 		else
 				car_make = 0

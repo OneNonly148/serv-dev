@@ -25,6 +25,7 @@ $ date_pick = ()->
     error: (error) ->
       return
 @load_car_makes = (option_no)->
+  console.log option_no
   $(".car_models").hide()
   $.ajax
     url: '/book/load_car_makes.json'
