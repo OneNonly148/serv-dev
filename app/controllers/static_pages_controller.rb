@@ -12,10 +12,13 @@ class StaticPagesController < ApplicationController
     redirect_to book_mng_path
   end
   def create
-    car = params["car"]
+    car1 = params["proton"]
+    car2 = params["produa"]
+    car3 = params["others"]
     pack = params["pack"]
-    package = Package.create(name: pack, car_id: car)
+    package = Package.create(name: pack, proton: car1, produa: car2, others: car3)
     package.save
+    flash[:success] = "Package Created"
     redirect_to book_mng_path
   end
 end

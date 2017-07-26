@@ -1,13 +1,26 @@
+
 $ ->
   packn = $( "#package" )
-  car_make = $( "#car_make" )
-  allFields = $( [] ).add(packn).add(car_make)
+  protonv = 0
+  produav = 0
+  othersv = 0
+  @proton_sel = ->
+    protonv= 1
+    return
+  @produa_sel = ->
+    produav= 1
+    return
+  @others_sel = ->
+    othersv= 1
+    return
   addUser = ->
     $.ajax
       url: '/book/save_pack.json'
       data:
         pack: packn.val()
-        car: car_make.val()
+        proton: protonv
+        produa: produav
+        others: othersv
       type: 'get'
       dialog.dialog 'close'
     return
@@ -16,7 +29,6 @@ $ ->
     height: 250
     width: 350
     modal: true
-    #$('#car_make').append('<input type="checkbox" value=1>Proton</option><br><input type="checkbox" value=1>Proton</option>')
     buttons:
       'Create a package': addUser
       Cancel: ->
