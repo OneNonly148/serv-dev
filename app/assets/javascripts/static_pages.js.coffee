@@ -1,4 +1,4 @@
-$ ->
+###$ ->
   packn = $( "#package" )
   car_make = $( "#car_make" )
   allFields = $( [] ).add(packn).add(car_make)
@@ -16,7 +16,7 @@ $ ->
     height: 250
     width: 350
     modal: true
-    $('#car_make').append('<option value=1>Proton</option>')
+    #$('#car_make').append('<input type="checkbox" value=1>Proton</option><br><input type="checkbox" value=1>Proton</option>')
     buttons:
       'Create a package': addUser
       Cancel: ->
@@ -36,3 +36,4 @@ $ ->
   $('#create-user').button().on 'click', ->
     dialog.dialog 'open'
     return
+###
