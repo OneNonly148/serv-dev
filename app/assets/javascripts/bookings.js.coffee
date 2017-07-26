@@ -6,20 +6,6 @@ $ date_pick = ()->
   date = JSON.stringify date
   console.log "Date: " + date
   return
-window.onload = () ->
-  $(".sloc").hide()
-  $.ajax
-    url: '/book/load_region.json'
-    type: 'get'
-    success: (result)->
-      $("#region").empty()
-      $("#region").append("<option>Select Region</option>")
-      $.each result, (key, value) ->
-        $("#region").append("<option value='"+value.id+"'>"+value.name+"</option>")
-        return
-      return
-    error: (error) ->
-      return
 @load_locate = (region) ->
   $(".sloc").show()
   $.ajax
@@ -76,3 +62,17 @@ jQuery ->
   $(".sloc").hide()
   $(".car_makes").hide()
   $(".car_models").hide()
+window.onload = () ->
+  $(".sloc").hide()
+  $.ajax
+    url: '/book/load_region.json'
+    type: 'get'
+    success: (result)->
+      $("#region").empty()
+      $("#region").append("<option>Select Region</option>")
+      $.each result, (key, value) ->
+        $("#region").append("<option value='"+value.id+"'>"+value.name+"</option>")
+        return
+      return
+    error: (error) ->
+      return
