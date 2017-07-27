@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div class="page">
-      <form id="test_one">
+      <form class="test_one">
         Name:<br>
         <input type="text" id="name">
         Phone Number:<br>
@@ -11,20 +11,27 @@
         <input type="email" id="email">
         <input type="button" value="Next" onclick="test_first()">
       </form>
-      <form id="test_two">
+      <form class="test_two">
+        Service Type:
+        <select id="tservice">
+        </select>
         Car Make:<br>
-        <input type="text" id="make">
+        <select id="tmake">
+        </select>
         Car Model:<br>
-        <input type="text" id="model">
-        Service Type:<br>
-        <input type="text" id="service">
-        Location:<br>
-        <input type="text" id="location">
+        <select id="tmodel">
+        </select>
+        Region:<br>
+        <select id="tregion">
+        </select>
+        Location<br>
+        <select id="tlocation">
+        </select>
         Booking Date:<br>
-        <input type="text" id="date">
+        <input type="text" id="tdate">
         <input type="button" value="Next" onclick="test_second()">
       </form>
-      <form id="test_three">
+      <form class="test_three">
         <input type="checkbox" id="transfer">
         Online Transfer<br>
         <input type="checkbox" id="cash">

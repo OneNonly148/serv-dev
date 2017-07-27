@@ -12,16 +12,30 @@ service = ""
     name = $("#name")
     phone = $("#phone")
     email = $("#email")
-    $("#test_one").hide()
-    $("#test_two").show()
+    $(".test_one").hide()
+    $(".test_two").show()
 @test_second = ()->
-    make = $("#make")
-    model = $("#model")
-    service = $("#service")
-    location = $("#location")
-    date = $("#date")
-    $("#test_two").hide()
-    $("#test_three").show()
+    make = $("#tmake")
+    model = $("#tmodel")
+    service = $("#tservice")
+    location = $("#tlocation")
+    date = $("#tdate")
+    $(".test_two").hide()
+    $(".test_three").show()
+    $( "#test_tdate" ).datepicker()
+    $.ajax
+      url: '/test/load_pack.json'
+      type: 'get'
+      success: (result)->
+        $("#test_tservice").empty()
+        $("#test_tservice").append("<option>Select Service Package</option>")
+        $.each result, (key, value) ->
+          $("#test_tservice").append("<option value='"+value.id+"'>"+value.name+"</option>")
+          return
+        return
+      error: (error) ->
+        return
+
 @test_final = ()->
     transfer = $("#transfer")
     cash = $("#cash")
@@ -40,11 +54,59 @@ service = ""
         cash: cash.val()
       type: 'get'
       success: (result)->
-        $("#test_three").hide()
+        $(".test_three").hide()
         $(".page").append "<h1>Thank You! " +result+ "</h1>"
         return
       error: (error)->
         return
+@date_select = () ->
+  date = $( "#date" ).datepicker('getDate')
+  date = JSON.stringify date
+  return
+@load_locate = (region) ->
+  $.ajax
+    url: '/test/load_locate.json'
+    data: region: region
+    type: 'get'
+    success: (result)->
+      $("#location").empty()
+      $("#location").append("<option>Select Location</option>")
+      $.each result, (key, value) ->
+        $("#location").append("<option value='"+value.id+"'>"+value.name+"</option>")
+        return
+      return
+    error: (error) ->
+      return
+@load_car_makes = (option_no)->
+  $.ajax
+    url: '/test/load_car_makes.json'
+    data: option_no: option_no
+    type: 'get'
+    success: (result)->
+        $("#make").empty()
+        $("#make").append("<option>Select Car Make</option>")
+        $.each result, (key, value) ->
+          $("#make").append("<option value='"+value.id+"'>"+value.name+"</option>")
+          return
+        return
+    error: (error)->
+      console.log "There was an error"
+      return
+@load_car_models = (make_no)->
+  $.ajax
+    url: '/test/load_car_models.json'
+    data: make_no: make_no
+    type: 'get'
+    success: (result)->
+      $("#model").empty()
+      $("#model").append("<option>Select Car Model</option>")
+      $.each result, (key, value) ->
+        $("#model").append("<option value='"+value.id+"'>"+value.name+"</option>")
+        return
+      return
+    error: (error)->
+      console.log "There was an error"
+      return
 $ ->
   packn = $( "#package" )
   protonv = 0
@@ -96,5 +158,5 @@ $ ->
     return
 $ jQuery ->
     $('#dialog-form').hide()
-    $("#test_three").hide()
-    $("#test_two").hide()
+    $(".test_three").hide()
+    $(".test_two").hide()
