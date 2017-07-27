@@ -9,32 +9,45 @@ transfer = ""
 cash = ""
 service = ""
 @test_first = ()->
+    console.log "Second trigger"
     name = $("#name")
     phone = $("#phone")
     email = $("#email")
     $(".test_one").hide()
+    $(".make").hide()
+    $(".model").hide()
     $(".test_two").show()
-@test_second = ()->
-    make = $("#tmake")
-    model = $("#tmodel")
-    service = $("#tservice")
-    location = $("#tlocation")
-    date = $("#tdate")
-    $(".test_two").hide()
-    $(".test_three").show()
-    $( "#test_tdate" ).datepicker()
+    $( "#test_date" ).datepicker()
     $.ajax
       url: '/test/load_pack.json'
       type: 'get'
       success: (result)->
-        $("#test_tservice").empty()
-        $("#test_tservice").append("<option>Select Service Package</option>")
+        $("#service").empty()
         $.each result, (key, value) ->
-          $("#test_tservice").append("<option value='"+value.id+"'>"+value.name+"</option>")
+          $("#service").append("<option value='"+value.id+"'>"+value.name+"</option>")
           return
         return
       error: (error) ->
         return
+    $.ajax
+      url: '/test/load_region.json'
+      type: 'get'
+      success: (result)->
+        $("#region").empty()
+        $("#region").append("<option>Select Region</option>")
+        $.each result, (key, value) ->
+          $("#region").append("<option value='"+value.id+"'>"+value.name+"</option>")
+          return
+        return
+      error: (error) ->
+        return
+@test_second = ()->
+    make = $("#make")
+    model = $("#model")
+    location = $("#location")
+    date = $("#date")
+    $(".test_two").hide()
+    $(".test_three").show()
 
 @test_final = ()->
     transfer = $("#transfer")
@@ -77,12 +90,15 @@ service = ""
       return
     error: (error) ->
       return
-@load_car_makes = (option_no)->
+@load_car_makes = ()->
+  service = $("#service")
+  console.log service.val()
   $.ajax
     url: '/test/load_car_makes.json'
-    data: option_no: option_no
+    data: option_no: service.val()
     type: 'get'
     success: (result)->
+        $(".make").show()
         $("#make").empty()
         $("#make").append("<option>Select Car Make</option>")
         $.each result, (key, value) ->
@@ -98,6 +114,7 @@ service = ""
     data: make_no: make_no
     type: 'get'
     success: (result)->
+      $(".model").show()
       $("#model").empty()
       $("#model").append("<option>Select Car Model</option>")
       $.each result, (key, value) ->

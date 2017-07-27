@@ -13,22 +13,26 @@
       </form>
       <form class="test_two">
         Service Type:
-        <select id="tservice">
+        <select id="service" onchange="load_car_makes()">
         </select>
-        Car Make:<br>
-        <select id="tmake">
-        </select>
-        Car Model:<br>
-        <select id="tmodel">
-        </select>
+        <div class="make">
+          Car Make:<br>
+          <select id="make" onchange="load_car_models($this().val())">
+          </select>
+        </div>
+        <div class="model">
+          Car Model:<br>
+          <select id="model">
+          </select>
+        </div>
         Region:<br>
-        <select id="tregion">
+        <select id="region">
         </select>
         Location<br>
-        <select id="tlocation">
+        <select id="location">
         </select>
         Booking Date:<br>
-        <input type="text" id="tdate">
+        <input type="text" id="date">
         <input type="button" value="Next" onclick="test_second()">
       </form>
       <form class="test_three">
