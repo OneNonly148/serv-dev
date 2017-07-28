@@ -22,9 +22,9 @@ service = "empty"
     $.ajax
       url: '/test/load_pack.json'
       type: 'get'
-      success: (result)->
+      success: (pack)->
         $("#service").empty()
-        $.each result, (key, value) ->
+        $.each pack, (key, value) ->
           $("#service").append("<option value='"+value.id+"'>"+value.name+"</option>")
           return
         return
@@ -33,16 +33,17 @@ service = "empty"
     $.ajax
       url: '/test/load_region.json'
       type: 'get'
-      success: (result)->
+      success: (region)->
         $("#region").empty()
         $("#region").append("<option>Select Region</option>")
-        $.each result, (key, value) ->
+        $.each region, (key, value) ->
           $("#region").append("<option value='"+value.id+"'>"+value.name+"</option>")
           return
         return
       error: (error) ->
         return
 @test_second = ()->
+    console.log servicen
     model = $("#model")
     make = $("#make")
     service =  $("#service")
@@ -51,7 +52,6 @@ service = "empty"
     date = $("#date")
     $(".test_two").hide()
     $(".test_three").show()
-
 @test_final = ()->
     #console.log "Pass: " +service+ " | " +make+ " | " +model+ " | " +region+ " | " +location+ " | " +date
     $.ajax
@@ -69,9 +69,9 @@ service = "empty"
         transfer: transfer
         cash: cash
       type: 'get'
-      success: (result)->
+      success: (serv)->
         $(".test_three").hide()
-        $(".page").append "<h1>Thank You! " +result+ "</h1>"
+        $(".page").append "<h1>Thank You! "+name.val()+"</h1>"
         return
       error: (error)->
         return
@@ -98,11 +98,11 @@ service = "empty"
     url: '/test/load_locate.json'
     data: region: region.val()
     type: 'get'
-    success: (result)->
+    success: (loca)->
       $(".location").show()
       $("#location").empty()
       $("#location").append("<option>Select Location</option>")
-      $.each result, (key, value) ->
+      $.each loca, (key, value) ->
         $("#location").append("<option value='"+value.id+"'>"+value.name+"</option>")
         return
       return
@@ -114,11 +114,11 @@ service = "empty"
     url: '/test/load_car_makes.json'
     data: option_no: service.val()
     type: 'get'
-    success: (result)->
+    success: (mak)->
         $(".make").show()
         $("#make").empty()
         $("#make").append("<option>Select Car Make</option>")
-        $.each result, (key, value) ->
+        $.each mak, (key, value) ->
           $("#make").append("<option value='"+value.id+"'>"+value.name+"</option>")
           return
         return
@@ -131,11 +131,11 @@ service = "empty"
     url: '/test/load_car_models.json'
     data: make_no: make.val()
     type: 'get'
-    success: (result)->
+    success: (mod)->
       $(".model").show()
       $("#model").empty()
       $("#model").append("<option>Select Car Model</option>")
-      $.each result, (key, value) ->
+      $.each mod, (key, value) ->
         $("#model").append("<option value='"+value.id+"'>"+value.name+"</option>")
         return
       return

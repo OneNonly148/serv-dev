@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get   '/test/load_locate', to: 'static_pages#load_locate'
   get   '/test/load_pack', to: 'static_pages#load_pack'
   get   '/test/save', to: 'static_pages#test_save'
+  get   '/test/mail', to: 'static_pages#test_mail'
 
   get   '/book/load_car_makes'  , to: 'bookings#load_car_makes'
   get   '/book/load_car_models' , to: 'bookings#load_car_models'
