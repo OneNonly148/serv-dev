@@ -1,10 +1,12 @@
 class BookingMailMailer < ApplicationMailer
-    def booking_mail(user)
+    def booking_mail(user, service)
       @booking = user
-      mail to: @booking.email, subject: "SERV Booking Request"
-    end
-    def admin_mail(user)
-      @booking = user
-      mail to: "serv.dev.p2@gmail.com", subject: "SERV Booking Request"
+      $pack = service
+      @package = Package.all
+      @car_make = Make.all
+      @car_model = Model.all
+      @l_region = Mjloc.all
+      @l_location = Mnloc.all
+      mail to: @booking.email, cc: "serv.dev.p2@gmail.com", subject: "SERV Booking Request"
     end
 end

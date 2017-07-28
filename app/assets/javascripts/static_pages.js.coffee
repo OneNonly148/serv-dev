@@ -75,6 +75,8 @@ service = "empty"
         return
       error: (error)->
         return
+@findme = () ->
+  console.log "Where's waldo?"
 @checktrigger = (id)->
   if id == 1 && transfer == 0
     transfer = 1

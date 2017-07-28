@@ -65,6 +65,7 @@ class StaticPagesController < ApplicationController
     transfer = params["transfer"]
     cash = params["cash"]
     test_save = Test.create(name: name, email: email, phone: phone, make: make, model:modelv, region: region, service:servicev, location: location, date: date, transfer: transfer, cash: cash)
+    BookingMailMailer.booking_mail(email, servicev).deliver_now
     respond_to do |format|
 			format.json {render json: name.to_json, status: :ok }
 		end
