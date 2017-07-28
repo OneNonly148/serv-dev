@@ -1,23 +1,24 @@
-name = ""
-phone = ""
-email = ""
-make = ""
-model = ""
-location = ""
-date = ""
-transfer = ""
-cash = ""
-service = ""
+name = "empty"
+phone = "empty"
+email = "empty"
+make = "empty"
+model = "empty"
+region = "empty"
+location = "empty"
+date = "empty"
+transfer = 0
+cash = 0
+service = "empty"
 @test_first = ()->
-    console.log "Second trigger"
     name = $("#name")
     phone = $("#phone")
     email = $("#email")
     $(".test_one").hide()
     $(".make").hide()
     $(".model").hide()
+    $(".location").hide()
     $(".test_two").show()
-    $( "#test_date" ).datepicker()
+    $( "#date" ).datepicker()
     $.ajax
       url: '/test/load_pack.json'
       type: 'get'
@@ -42,16 +43,17 @@ service = ""
       error: (error) ->
         return
 @test_second = ()->
-    make = $("#make")
     model = $("#model")
+    make = $("#make")
+    service =  $("#service")
+    region = $("#region")
     location = $("#location")
     date = $("#date")
     $(".test_two").hide()
     $(".test_three").show()
 
 @test_final = ()->
-    transfer = $("#transfer")
-    cash = $("#cash")
+    #console.log "Pass: " +service+ " | " +make+ " | " +model+ " | " +region+ " | " +location+ " | " +date
     $.ajax
       url: 'test/save.json'
       data:
@@ -61,10 +63,11 @@ service = ""
         make: make.val()
         model: model.val()
         service: service.val()
+        region: region.val()
         location: location.val()
         date: date.val()
-        transfer: transfer.val()
-        cash: cash.val()
+        transfer: transfer
+        cash: cash
       type: 'get'
       success: (result)->
         $(".test_three").hide()
@@ -72,16 +75,29 @@ service = ""
         return
       error: (error)->
         return
+@checktrigger = (id)->
+  if id == 1 && transfer == 0
+    transfer = 1
+  else if id == 1
+    transfer = 0
+  else if id == 2 && cash == 0
+    cash = 1
+  else if id == 2
+    cash = 0
+  #console.log cash+ " | " +transfer
+
 @date_select = () ->
   date = $( "#date" ).datepicker('getDate')
   date = JSON.stringify date
   return
-@load_locate = (region) ->
+@load_locate = () ->
+  region = $("#region")
   $.ajax
     url: '/test/load_locate.json'
-    data: region: region
+    data: region: region.val()
     type: 'get'
     success: (result)->
+      $(".location").show()
       $("#location").empty()
       $("#location").append("<option>Select Location</option>")
       $.each result, (key, value) ->
@@ -92,7 +108,6 @@ service = ""
       return
 @load_car_makes = ()->
   service = $("#service")
-  console.log service.val()
   $.ajax
     url: '/test/load_car_makes.json'
     data: option_no: service.val()
@@ -108,10 +123,11 @@ service = ""
     error: (error)->
       console.log "There was an error"
       return
-@load_car_models = (make_no)->
+@load_car_models = ()->
+  make = $("#make")
   $.ajax
     url: '/test/load_car_models.json'
-    data: make_no: make_no
+    data: make_no: make.val()
     type: 'get'
     success: (result)->
       $(".model").show()

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726081532) do
+ActiveRecord::Schema.define(version: 20170728011025) do
 
   create_table "bookings", force: :cascade do |t|
     t.string "name"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20170726081532) do
     t.string "transfer"
     t.string "cash"
     t.string "service"
+    t.string "region"
   end
 
 end
