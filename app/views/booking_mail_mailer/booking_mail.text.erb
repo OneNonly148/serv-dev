@@ -1,16 +1,22 @@
-Hi,
+Hi <%= @name %>,
 
 Your booking request copy, details below:
-
 ___________________________________
 Request made by:
-Name:
-Phone:
-
+Name      : <%= @name %>
+Phone     : <%= @phone %>
+Booking On: <%= @date %>
 ___________________________________
 Package Details:
-Package: <%= email.package.name %>
-Region:
+Package   : <%= @service %>
+Car Make  : <%= @make %>
+Car Model : <%= @model %>
+Payment method: Online Transfer : <%= @transfer %>
+                Cash            : <%= @cash %>
+___________________________________
+Location Details
+Region    : <%= @region %>
+Location  : <%= @location %>
 
 ___________________________________
 Thank you,

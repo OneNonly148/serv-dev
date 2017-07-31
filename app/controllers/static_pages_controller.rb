@@ -8,15 +8,15 @@ class StaticPagesController < ApplicationController
 		end
   end
   def load_region
-		mjloc = Mjloc.where(id:[1..4])
+		mjloc = Mjloc.where(id:[1..5])
 		respond_to do |format|
 			format.json { render json: mjloc.to_json, status: :ok }
 		end
 	end
 	def load_locate
 		region = params["region"].to_i
-		if region == 1
-			mnloc = Mnloc.where(id:[1])
+		if region == 2
+			mnloc = Mnloc.where(id:[1..2])
 		end
 		respond_to do |format|
 			format.json { render json: mnloc.to_json, status: :ok }
@@ -25,13 +25,13 @@ class StaticPagesController < ApplicationController
 	def load_car_makes
 		option_no = params["option_no"].to_i
 		if option_no == 2
-				car_make = Make.where(id:[1,2])
+				car_make = Make.where(id:[1,2,3])
 		elsif option_no == 3
-				car_make = Make.where(id:[1,2])
+				car_make = Make.where(id:[1,2,3])
 		elsif option_no == 4
-				car_make = Make.where(id:[2])
+				car_make = Make.where(id:[1,3])
 		elsif option_no == 5
-				car_make = Make.where(id:[3..9])
+				car_make = Make.where(id:[1,4..10])
 		else
 				car_make = 0
 		end
@@ -41,10 +41,10 @@ class StaticPagesController < ApplicationController
 	end
 	def load_car_models
 		make_no = params["make_no"].to_i
-		if make_no == 1
+		if make_no == 2
 			car_model = Model.where(id:[1..17])
-		elsif make_no == 2
-			car_model = Model.where(id:[18..25])
+		elsif make_no == 3
+			car_model = Model.where(id:[1,18..25])
 		else
 			car_model = 0
 		end
@@ -64,8 +64,13 @@ class StaticPagesController < ApplicationController
     date = params["date"]
     transfer = params["transfer"]
     cash = params["cash"]
-    test_save = Test.create(name: name, email: email, phone: phone, make: make, model:modelv, region: region, service:servicev, location: location, date: date, transfer: transfer, cash: cash)
-    BookingMailMailer.booking_mail(test_save).deliver_now
+    servicen = params["servicen"]
+    maken = params["maken"]
+    modeln = params["modeln"]
+    regionn = params["regionn"]
+    locationn = params["locationn"]
+    test_save = Test.create(name: name, email: email, phone: phone, make: make, model: modelv, region: region, service: servicev, location: location, date: $date, transfer: $transfer, cash: $cash)
+    BookingMailMailer.booking_mail(name, email, phone, servicen, maken, modeln, date, regionn, locationn, transfer, cash,).deliver_now
     respond_to do |format|
 			format.json {render json: test_save.to_json, status: :ok }
 		end

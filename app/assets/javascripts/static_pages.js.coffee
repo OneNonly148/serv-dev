@@ -2,13 +2,23 @@ name = "empty"
 phone = "empty"
 email = "empty"
 make = "empty"
+makea = []
+maken = ""
 model = "empty"
+modela = []
+modeln = ""
 region = "empty"
+regiona = []
+regionn = ""
 location = "empty"
+locationa = []
+locationn = ""
 date = "empty"
-transfer = 0
-cash = 0
+transfer = "No"
+cash = "No"
 service = "empty"
+servicea = []
+servicen = ""
 @test_first = ()->
     name = $("#name")
     phone = $("#phone")
@@ -24,7 +34,9 @@ service = "empty"
       type: 'get'
       success: (pack)->
         $("#service").empty()
+        i = 1
         $.each pack, (key, value) ->
+          servicea[i++] = value.name
           $("#service").append("<option value='"+value.id+"'>"+value.name+"</option>")
           return
         return
@@ -35,15 +47,15 @@ service = "empty"
       type: 'get'
       success: (region)->
         $("#region").empty()
-        $("#region").append("<option>Select Region</option>")
+        i = 1
         $.each region, (key, value) ->
+          regiona[i++] = value.name
           $("#region").append("<option value='"+value.id+"'>"+value.name+"</option>")
           return
         return
       error: (error) ->
         return
 @test_second = ()->
-    console.log servicen
     model = $("#model")
     make = $("#make")
     service =  $("#service")
@@ -52,6 +64,13 @@ service = "empty"
     date = $("#date")
     $(".test_two").hide()
     $(".test_three").show()
+    servicen = servicea[service.val()]
+    maken = makea[make.val()]
+    modeln = modela[model.val()]
+    regionn = regiona[region.val()]
+    locationn = locationa[location.val()]
+    #console.log ": " +model.val()+ " | " +modela+ " | " +modeln
+    #console.log ": " +location.val()+ " | " +locationa+ " | " +locationn
 @test_final = ()->
     #console.log "Pass: " +service+ " | " +make+ " | " +model+ " | " +region+ " | " +location+ " | " +date
     $.ajax
@@ -68,6 +87,11 @@ service = "empty"
         date: date.val()
         transfer: transfer
         cash: cash
+        servicen: servicen
+        maken: maken
+        modeln:modeln
+        regionn: regionn
+        locationn: locationn
       type: 'get'
       success: (serv)->
         $(".test_three").hide()
@@ -78,14 +102,14 @@ service = "empty"
 @findme = () ->
   console.log "Where's waldo?"
 @checktrigger = (id)->
-  if id == 1 && transfer == 0
-    transfer = 1
+  if id == 1 && transfer == "No"
+    transfer = "Yes"
   else if id == 1
-    transfer = 0
-  else if id == 2 && cash == 0
-    cash = 1
+    transfer = "No"
+  else if id == 2 && cash == "No"
+    cash = "Yes"
   else if id == 2
-    cash = 0
+    cash = "No"
   #console.log cash+ " | " +transfer
 
 @date_select = () ->
@@ -101,8 +125,9 @@ service = "empty"
     success: (loca)->
       $(".location").show()
       $("#location").empty()
-      $("#location").append("<option>Select Location</option>")
+      i = 1
       $.each loca, (key, value) ->
+        locationa[i++] = value.name
         $("#location").append("<option value='"+value.id+"'>"+value.name+"</option>")
         return
       return
@@ -117,8 +142,9 @@ service = "empty"
     success: (mak)->
         $(".make").show()
         $("#make").empty()
-        $("#make").append("<option>Select Car Make</option>")
+        i = 1
         $.each mak, (key, value) ->
+          makea[i++] = value.name
           $("#make").append("<option value='"+value.id+"'>"+value.name+"</option>")
           return
         return
@@ -134,8 +160,9 @@ service = "empty"
     success: (mod)->
       $(".model").show()
       $("#model").empty()
-      $("#model").append("<option>Select Car Model</option>")
+      i = 1
       $.each mod, (key, value) ->
+        modela[i++] = value.name
         $("#model").append("<option value='"+value.id+"'>"+value.name+"</option>")
         return
       return
