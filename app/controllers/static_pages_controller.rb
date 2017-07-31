@@ -42,9 +42,9 @@ class StaticPagesController < ApplicationController
 	def load_car_models
 		make_no = params["make_no"].to_i
 		if make_no == 2
-			car_model = Model.where(id:[1..17])
+			car_model = Model.where(id:[1..18])
 		elsif make_no == 3
-			car_model = Model.where(id:[1,18..25])
+			car_model = Model.where(id:[1,19..26])
 		else
 			car_model = 0
 		end
@@ -69,7 +69,7 @@ class StaticPagesController < ApplicationController
     modeln = params["modeln"]
     regionn = params["regionn"]
     locationn = params["locationn"]
-    test_save = Test.create(name: name, email: email, phone: phone, make: make, model: modelv, region: region, service: servicev, location: location, date: $date, transfer: $transfer, cash: $cash)
+    test_save = Test.create(name: name, email: email, phone: phone, make: make, model: modelv, region: region, service: servicev, location: location, date: date, transfer: transfer, cash: cash)
     BookingMailMailer.booking_mail(name, email, phone, servicen, maken, modeln, date, regionn, locationn, transfer, cash,).deliver_now
     respond_to do |format|
 			format.json {render json: test_save.to_json, status: :ok }

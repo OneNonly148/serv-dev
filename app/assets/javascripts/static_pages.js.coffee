@@ -2,10 +2,16 @@ name = "empty"
 phone = "empty"
 email = "empty"
 make = "empty"
-makea = []
+makea = [
+  []
+  []
+]
 maken = ""
 model = "empty"
-modela = []
+modela = [
+  []
+  []
+]
 modeln = ""
 region = "empty"
 regiona = []
@@ -19,42 +25,51 @@ cash = "No"
 service = "empty"
 servicea = []
 servicen = ""
+e_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+p_regex = [/^\d{10}$/, /^\d{9}$/, /^\d{8}$/]
+e_reg = false
+p_reg = false
+j = 0
 @test_first = ()->
-    name = $("#name")
-    phone = $("#phone")
-    email = $("#email")
-    $(".test_one").hide()
-    $(".make").hide()
-    $(".model").hide()
-    $(".location").hide()
-    $(".test_two").show()
-    $( "#date" ).datepicker()
-    $.ajax
-      url: '/test/load_pack.json'
-      type: 'get'
-      success: (pack)->
-        $("#service").empty()
-        i = 1
-        $.each pack, (key, value) ->
-          servicea[i++] = value.name
-          $("#service").append("<option value='"+value.id+"'>"+value.name+"</option>")
+    if e_reg == false || p_reg == false
+      alert("Missing fields")
+      return
+    else
+      name = $("#name")
+      phone = $("#phone")
+      email = $("#email")
+      $(".test_one").hide()
+      $(".make").hide()
+      $(".model").hide()
+      $(".location").hide()
+      $(".test_two").show()
+      $( "#date" ).datepicker()
+      $.ajax
+        url: '/test/load_pack.json'
+        type: 'get'
+        success: (pack)->
+          $("#service").empty()
+          i = 1
+          $.each pack, (key, value) ->
+            servicea[i++] = value.name
+            $("#service").append("<option value='"+value.id+"'>"+value.name+"</option>")
+            return
           return
-        return
-      error: (error) ->
-        return
-    $.ajax
-      url: '/test/load_region.json'
-      type: 'get'
-      success: (region)->
-        $("#region").empty()
-        i = 1
-        $.each region, (key, value) ->
-          regiona[i++] = value.name
-          $("#region").append("<option value='"+value.id+"'>"+value.name+"</option>")
+        error: (error) ->
           return
-        return
-      error: (error) ->
-        return
+      $.ajax
+        url: '/test/load_region.json'
+        type: 'get'
+        success: (region)->
+          $("#region").empty()
+          i = 1
+          $.each region, (key, value) ->
+            regiona[i++] = value.name
+            $("#region").append("<option value='"+value.id+"'>"+value.name+"</option>")
+            return
+          return
+        error: (error) ->
+          return
 @test_second = ()->
     model = $("#model")
     make = $("#make")
@@ -62,43 +77,53 @@ servicen = ""
     region = $("#region")
     location = $("#location")
     date = $("#date")
-    $(".test_two").hide()
-    $(".test_three").show()
-    servicen = servicea[service.val()]
-    maken = makea[make.val()]
-    modeln = modela[model.val()]
-    regionn = regiona[region.val()]
-    locationn = locationa[location.val()]
-    #console.log ": " +model.val()+ " | " +modela+ " | " +modeln
-    #console.log ": " +location.val()+ " | " +locationa+ " | " +locationn
+    console.log service.val()+ " | " +make.val()+ " | " +region.val()+ " | " +date.val()
+    if service.val() == "1" || make.val() == "1" || region.val() == "1" || date.val() == "empty"
+      alert("Missing fields")
+      return
+    else
+      $(".test_two").hide()
+      $(".test_three").show()
+      servicen = servicea[service.val()]
+      maken = makea[1][make.val()]
+      modeln = modela[model.val()]
+      regionn = regiona[region.val()]
+      locationn = locationa[location.val()]
+      console.log ": " +model.val()+ " | " +modela+ " | " +modeln
 @test_final = ()->
-    #console.log "Pass: " +service+ " | " +make+ " | " +model+ " | " +region+ " | " +location+ " | " +date
-    $.ajax
-      url: 'test/save.json'
-      data:
-        name: name.val()
-        phone: phone.val()
-        email: email.val()
-        make: make.val()
-        model: model.val()
-        service: service.val()
-        region: region.val()
-        location: location.val()
-        date: date.val()
-        transfer: transfer
-        cash: cash
-        servicen: servicen
-        maken: maken
-        modeln:modeln
-        regionn: regionn
-        locationn: locationn
-      type: 'get'
-      success: (serv)->
-        $(".test_three").hide()
-        $(".page").append "<h1>Thank You! "+name.val()+"</h1>"
-        return
-      error: (error)->
-        return
+    if transfer == "No" && cash == "No"
+      alert("Please select a payment method")
+    else
+      #console.log "Pass: " +service+ " | " +make+ " | " +model+ " | " +region+ " | " +location+ " | " +date
+      $.ajax
+        url: 'test/save.json'
+        data:
+          name: name.val()
+          phone: phone.val()
+          email: email.val()
+          make: make.val()
+          model: model.val()
+          service: service.val()
+          region: region.val()
+          location: location.val()
+          date: date.val()
+          transfer: transfer
+          cash: cash
+          servicen: servicen
+          maken: maken
+          modeln:modeln
+          regionn: regionn
+          locationn: locationn
+        type: 'get'
+        success: (serv)->
+          $(".test_three").hide()
+          $(".page").append "<h1>Thank You! "+name.val()+"</h1>"
+          document.getElementById('form_one').reset()
+          document.getElementById('form_two').reset()
+          document.getElementById('form_three').reset()
+          return
+        error: (error)->
+          return
 @findme = () ->
   console.log "Where's waldo?"
 @checktrigger = (id)->
@@ -111,7 +136,25 @@ servicen = ""
   else if id == 2
     cash = "No"
   #console.log cash+ " | " +transfer
-
+@valid_phone = () ->
+  phone = $("#phone")
+  i=0
+  while i<3
+    p_regext = p_regex[i]
+    p_reg = p_regext.test(phone.val())
+    console.log i+ " | " +p_regext+ " | " +p_reg
+    if p_reg == true
+      i = 11
+    i++
+  if p_reg == false
+    alert("Invalid phone number")
+@valid_mail = () ->
+  email = $("#email")
+  e_reg = e_regex.test(email.val())
+  #console.log e_regex
+  unless e_reg
+    alert("Invalid email")
+  console.log "Here " +email.val()+ " | " +e_reg
 @date_select = () ->
   date = $( "#date" ).datepicker('getDate')
   date = JSON.stringify date
@@ -142,9 +185,8 @@ servicen = ""
     success: (mak)->
         $(".make").show()
         $("#make").empty()
-        i = 1
         $.each mak, (key, value) ->
-          makea[i++] = value.name
+          makea[1][value.id] = value.name
           $("#make").append("<option value='"+value.id+"'>"+value.name+"</option>")
           return
         return
@@ -160,9 +202,8 @@ servicen = ""
     success: (mod)->
       $(".model").show()
       $("#model").empty()
-      i = 1
       $.each mod, (key, value) ->
-        modela[i++] = value.name
+        modela[1][value.id] = value.name
         $("#model").append("<option value='"+value.id+"'>"+value.name+"</option>")
         return
       return
