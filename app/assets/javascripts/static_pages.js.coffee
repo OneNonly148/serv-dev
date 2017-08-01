@@ -30,6 +30,8 @@ p_regex = [/^\d{10}$/, /^\d{9}$/, /^\d{8}$/]
 e_reg = false
 p_reg = false
 j = 0
+x = ""
+position = ""
 @test_first = ()->
     if e_reg == false || p_reg == false
       alert("Missing fields")
@@ -124,8 +126,23 @@ j = 0
           return
         error: (error)->
           return
-@findme = () ->
-  console.log "Where's waldo?"
+option = ->
+  enableHighAccuracy: true
+  timeout: 5000
+  maximumAge: 0
+error = ->
+  x.innerHTML = 'Error: Unable to find Location'
+@getLocation = () ->
+  console.log "Where's Waldo?"
+  x = document.getElementById("locate")
+  if navigator.geolocation
+    navigator.geolocation.getCurrentPosition showPosition, error, option
+  else
+    x.innerHTML = 'Geolocation is not supported by this browser.'
+  return
+showPosition = (position) ->
+  x.innerHTML = 'Latitude: ' + position.coords.latitude + '<br>Longitude: ' + position.coords.longitude
+  return
 @checktrigger = (id)->
   if id == 1 && transfer == "No"
     transfer = "Yes"
@@ -159,6 +176,17 @@ j = 0
   date = $( "#date" ).datepicker('getDate')
   date = JSON.stringify date
   return
+@current_date = ()->
+  today = new Date
+  dd = today.getDate()
+  mm = today.getMonth() + 1
+  yyyy = today.getFullYear()
+  if dd < 10
+    dd = '0' + dd
+  if mm < 10
+    mm = '0' + mm
+  today = mm + '/' + dd + '/' + yyyy
+  console.log today
 @load_locate = () ->
   region = $("#region")
   $.ajax

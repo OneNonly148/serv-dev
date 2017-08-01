@@ -25,7 +25,7 @@
           <select id="model" class="form-control">
           </select>
         </div>
-        <div class="smallbtn">Region: <input type="button" value="Locate Me" onclick="findme()" class="btn btn-primary"></div><br>
+        <div id="locate" class="smallbtn">Region: <input type="button" value="Locate Me" onclick="getLocation()" class="btn btn-primary"></div><br>
         <select id="region" onchange="load_locate()" class="form-control">
         </select>
         <div class="location">
@@ -34,7 +34,7 @@
           </select>
         </div>
         Booking Date:<br>
-        <input type="text" id="date" class="form-control">
+        <input type="text" id="date" class="form-control" onchange="current_date()">
         <input type="button" value="Next" onclick="test_second()" class="btn btn-primary">
       </form>
       <form id="form_three" class="test_three">
