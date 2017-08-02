@@ -4,16 +4,16 @@
     <div class="page">
       <form id="form_one" class="test_one">
         Name:<br>
-        <input type="text" id="name" class="form-control">
+        <input type="text" id="et_pb_contact_name_1" class="form-control">
         Phone Number:<br>
-        <input type="text" id="phone" class="form-control" onchange="valid_phone()">
+        <input type="text" id="et_pb_contact_phone_1" class="form-control" onchange="valid_phone()">
         Email:<br>
         <input type="email" id="email" class="form-control" onchange="valid_mail()">
         <input type="button" value="Next" onclick="test_first()" class="btn btn-primary">
       </form>
       <form id="form_two" class="test_two">
         Service Type:
-        <select id="service" onchange="load_car_makes()" class="form-control">
+        <select id="et_pb_contact_service_type_1" onchange="load_car_makes()" class="form-control">
         </select>
         <div class="make">
           Car Make:<br>
@@ -26,7 +26,7 @@
           </select>
         </div>
         <div id="locate" class="smallbtn">Region: <input type="button" value="Locate Me" onclick="getLocation()" class="btn btn-primary"></div><br>
-        <select id="region" onchange="load_locate()" class="form-control">
+        <select id="et_pb_contact_service_location_1" onchange="load_locate()" class="form-control">
         </select>
         <div class="location">
           Location<br>
@@ -45,6 +45,10 @@
           <input type="checkbox" id="cash" onchange="checktrigger(2)">
           Cash<br>
         </div><br>
+        <div class="promo">
+          Promo Code: *optional
+          <input type="text" id="promoc" class="form-control" onchange="checkpromo()">
+        </div>
         <div class="g-recaptcha" data-sitekey="6LcXOioUAAAAAHX-M1So3YLi0lSRKuf9gGv4qF5F">
         </div><br>
         <input type="button" value="Submit" onclick="test_final()" class="btn btn-primary">

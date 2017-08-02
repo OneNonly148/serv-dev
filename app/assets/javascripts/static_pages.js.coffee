@@ -32,13 +32,15 @@ p_reg = false
 j = 0
 x = ""
 position = ""
+promov = ""
+promo = ""
 @test_first = ()->
     if e_reg == false || p_reg == false
       alert("Missing fields")
       return
     else
-      name = $("#name")
-      phone = $("#phone")
+      name = $("#et_pb_contact_name_1")
+      phone = $("#et_pb_contact_phone_1")
       email = $("#email")
       $(".test_one").hide()
       $(".make").hide()
@@ -50,11 +52,11 @@ position = ""
         url: '/test/load_pack.json'
         type: 'get'
         success: (pack)->
-          $("#service").empty()
+          $("#et_pb_contact_service_type_1").empty()
           i = 1
           $.each pack, (key, value) ->
             servicea[i++] = value.name
-            $("#service").append("<option value='"+value.id+"'>"+value.name+"</option>")
+            $("#et_pb_contact_service_type_1").append("<option value='"+value.id+"'>"+value.name+"</option>")
             return
           return
         error: (error) ->
@@ -63,11 +65,11 @@ position = ""
         url: '/test/load_region.json'
         type: 'get'
         success: (region)->
-          $("#region").empty()
+          $("#et_pb_contact_service_location_1").empty()
           i = 1
           $.each region, (key, value) ->
             regiona[i++] = value.name
-            $("#region").append("<option value='"+value.id+"'>"+value.name+"</option>")
+            $("#et_pb_contact_service_location_1").append("<option value='"+value.id+"'>"+value.name+"</option>")
             return
           return
         error: (error) ->
@@ -75,8 +77,8 @@ position = ""
 @test_second = ()->
     model = $("#model")
     make = $("#make")
-    service =  $("#service")
-    region = $("#region")
+    service =  $("#et_pb_contact_service_type_1")
+    region = $("#et_pb_contact_service_location_1")
     location = $("#location")
     date = $("#date")
     console.log service.val()+ " | " +make.val()+ " | " +region.val()+ " | " +date.val()
@@ -88,7 +90,7 @@ position = ""
       $(".test_three").show()
       servicen = servicea[service.val()]
       maken = makea[1][make.val()]
-      modeln = modela[model.val()]
+      modeln = modela[1][model.val()]
       regionn = regiona[region.val()]
       locationn = locationa[location.val()]
       console.log ": " +model.val()+ " | " +modela+ " | " +modeln
@@ -116,6 +118,7 @@ position = ""
           modeln:modeln
           regionn: regionn
           locationn: locationn
+          promo: promo
         type: 'get'
         success: (serv)->
           $(".test_three").hide()
@@ -153,8 +156,26 @@ showPosition = (position) ->
   else if id == 2
     cash = "No"
   #console.log cash+ " | " +transfer
+@checkpromo = ()->
+  promo = $("#promoc").val()
+  #console.log promo
+  $.ajax
+    url: '/test/load_promo.json'
+    type: 'get'
+    success: (result)->
+      #console.log "Promo loaded"
+      $.each result, (key,value)->
+        if value.code == promo
+          promov = value.code
+          alert("Promo Code is Valid")
+        return
+      console.log promov+ " | " +promo
+      if promov != promo
+        alert("Promo Code in Invalid")
+    error: (error) ->
+      return
 @valid_phone = () ->
-  phone = $("#phone")
+  phone = $("#et_pb_contact_phone_1")
   i=0
   while i<3
     p_regext = p_regex[i]
@@ -172,11 +193,12 @@ showPosition = (position) ->
   unless e_reg
     alert("Invalid email")
   console.log "Here " +email.val()+ " | " +e_reg
-@date_select = () ->
+date_select = () ->
   date = $( "#date" ).datepicker('getDate')
   date = JSON.stringify date
-  return
+  return date
 @current_date = ()->
+  date = $("#date").val()
   today = new Date
   dd = today.getDate()
   mm = today.getMonth() + 1
@@ -186,9 +208,11 @@ showPosition = (position) ->
   if mm < 10
     mm = '0' + mm
   today = mm + '/' + dd + '/' + yyyy
-  console.log today
+  console.log today+ " | " +date
+  if today >= date
+    alert("Date error")
 @load_locate = () ->
-  region = $("#region")
+  region = $("#et_pb_contact_service_location_1")
   $.ajax
     url: '/test/load_locate.json'
     data: region: region.val()
@@ -205,7 +229,7 @@ showPosition = (position) ->
     error: (error) ->
       return
 @load_car_makes = ()->
-  service = $("#service")
+  service = $("#et_pb_contact_service_type_1")
   $.ajax
     url: '/test/load_car_makes.json'
     data: option_no: service.val()

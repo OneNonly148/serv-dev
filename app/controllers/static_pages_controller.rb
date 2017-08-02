@@ -1,6 +1,12 @@
 class StaticPagesController < ApplicationController
   def test
   end
+  def load_promo
+    promo = Promo.all
+    respond_to do |format|
+      format.json { render json: promo.to_json, status: :ok }
+    end
+  end
   def load_pack
     pack = Package.where(id:[1..5])
     respond_to do |format|
@@ -69,8 +75,9 @@ class StaticPagesController < ApplicationController
     modeln = params["modeln"]
     regionn = params["regionn"]
     locationn = params["locationn"]
+    promo = params["promo"]
     test_save = Test.create(name: name, email: email, phone: phone, make: make, model: modelv, region: region, service: servicev, location: location, date: date, transfer: transfer, cash: cash)
-    BookingMailMailer.booking_mail(name, email, phone, servicen, maken, modeln, date, regionn, locationn, transfer, cash,).deliver_now
+    BookingMailMailer.booking_mail(name, email, phone, servicen, maken, modeln, date, regionn, locationn, transfer, cash, promo).deliver_now
     respond_to do |format|
 			format.json {render json: test_save.to_json, status: :ok }
 		end
